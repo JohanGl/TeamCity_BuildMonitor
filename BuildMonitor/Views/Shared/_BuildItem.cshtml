@@ -1,0 +1,20 @@
+﻿@model BuildMonitor.Models.Home.Build
+
+<div id="BuildDiv-@Model.Id" class="col-sm-6 col-md-4 col-lg-3">
+	<div class="well">
+		<h4 class="buildTitle text-cutoff">@Model.Name</h4>
+		<h2 class="status-@Model.Status text-cutoff">@Model.StatusText</h2>
+		<p class="buildInfoBranch text-cutoff">
+			Branch <span class="buildInfoHighlight">@Model.Branch</span>
+			@if (!string.IsNullOrWhiteSpace(Model.Progress))
+			{
+				<span> ▪ job <span class="buildInfoProgressHighlight"> @Model.Progress </span>done</span>
+			}
+			else if (Model.IsQueued)
+			{
+				<span> ▪ </span><span class="buildInfoProgressHighlight">queued</span>
+			}
+		</p>
+		<p class="buildInfo text-cutoff">Last updated by <span class="buildInfoHighlight">@Model.UpdatedBy</span> @Model.LastRunText</p>
+	</div>
+</div>

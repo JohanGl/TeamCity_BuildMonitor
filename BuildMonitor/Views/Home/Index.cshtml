@@ -1,0 +1,26 @@
+﻿@model BuildMonitor.Models.Home.BuildMonitorViewModel
+@{
+	ViewBag.Title = "Build Monitor";
+}
+
+@foreach (var project in Model.Projects)
+{
+	if (project.Builds.Count == 0)
+	{
+		continue;
+	}
+
+	<div>
+		<h3 class="projectTitle">▪▪▪ @project.Name ▪▪▪</h3>
+		<div class="row">
+			@foreach (var build in project.Builds)
+			{
+				@Html.Partial("~/Views/Shared/_BuildItem.cshtml", build);
+			}
+		</div>
+	</div>
+}
+
+@section scripts {
+	@Scripts.Render("~/bundles/home")
+}

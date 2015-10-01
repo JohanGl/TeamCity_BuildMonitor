@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+	<Groups>
+		<!-- Example xml structure for custom jobs, you can create as many groups with jobs as you want here -->
+		<Group name="Backend">
+			<Jobs>
+				<Job id="TeamCity_Job_Id_1" />
+				<Job id="TeamCity_Job_Id_2" />
+				<Job id="TeamCity_Job_Id_3" />
+				<Job id="TeamCity_Job_Id_4" />
+			</Jobs>
+		</Group>
+		<Group name="Frontend">
+			<Jobs>
+				<Job id="TeamCity_Job_Id_5" />
+				<Job id="TeamCity_Job_Id_6" />
+				<Job id="TeamCity_Job_Id_7" />
+				<Job id="TeamCity_Job_Id_8" />
+			</Jobs>
+		</Group>
+		<Group name="Tests">
+			<Jobs>
+				<Job id="TeamCity_Job_Id_9" />
+				<Job id="TeamCity_Job_Id_10" />
+			</Jobs>
+		</Group>
+	</Groups>
+</Settings>
