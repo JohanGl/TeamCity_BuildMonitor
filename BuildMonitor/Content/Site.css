@@ -59,6 +59,7 @@ html * {
 .projectTitle {
 	color: #777;
 	margin-top: -12px;
+	display: inline-block;
 }
 
 .buildTitle {
