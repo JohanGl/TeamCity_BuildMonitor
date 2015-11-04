@@ -64,8 +64,8 @@ namespace BuildMonitor.Helpers
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
-				build.Branch = buildStatusJson.branchName ?? "default";
-				build.Status = GetBuildStatusForRunningBuild(build.Id);
+                build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
+                build.Status = GetBuildStatusForRunningBuild(build.Id);
 
 				if (build.Status == BuildStatus.Running)
 				{
