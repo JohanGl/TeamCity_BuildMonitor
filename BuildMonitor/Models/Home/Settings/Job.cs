@@ -9,5 +9,8 @@ namespace BuildMonitor.Models.Home.Settings
 
 		[XmlAttribute("text")]
 		public string Text { get; set; }
+
+		[XmlAttribute("branch")]
+		public string Branch { get; set; }
 	}
 }

@@ -60,7 +60,8 @@ namespace BuildMonitor.Helpers
 				build.Id = buildTypeJson.id;
 				build.Name = job.Text ?? buildTypeJson.name;
 
-				var url = string.Format(buildStatusUrl, build.Id);
+			    string branch = String.IsNullOrEmpty(job.Branch) ? "(default:any)" : job.Branch;
+				var url = string.Format(buildStatusUrl, build.Id, branch);
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
