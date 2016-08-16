@@ -151,6 +151,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Settings.example.xml" />
     <Content Include="App_Data\Settings.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
