@@ -226,3 +226,7 @@ html * {
 .space {
 	padding-left: 20px;
 }
+
+.update-failure {
+	color: #FB1B45;
+}
