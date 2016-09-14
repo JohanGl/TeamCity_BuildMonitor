@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 using BuildMonitor.Models.Home;
 using BuildMonitor.Models.Home.Settings;
@@ -60,17 +61,18 @@ namespace BuildMonitor.Helpers
 				build.Id = buildTypeJson.id;
 				build.Name = job.Text ?? buildTypeJson.name;
 
-			    string branch = String.IsNullOrEmpty(job.Branch) ? "(default:any)" : job.Branch;
+				string branch = String.IsNullOrEmpty(job.Branch) ? "(default:any)" : job.Branch;
 				var url = string.Format(buildStatusUrl, build.Id, branch);
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
-                build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
-                build.Status = GetBuildStatusForRunningBuild(build.Id);
+				build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
+				string branchFilter = build.Branch != "default" && build.Branch != "unknown" ? build.Branch : null;
+				build.Status = GetBuildStatusForRunningBuild(build.Id, branchFilter);
 
 				if (build.Status == BuildStatus.Running)
 				{
-					UpdateBuildStatusFromRunningBuildJson(build.Id);
+					UpdateBuildStatusFromRunningBuildJson(build.Id, branchFilter);
 				}
 
 				build.UpdatedBy = GetUpdatedBy();
@@ -79,7 +81,7 @@ namespace BuildMonitor.Helpers
 
 				if (build.Status == BuildStatus.Running)
 				{
-					var result = GetRunningBuildBranchAndProgress(build.Id);
+					var result = GetRunningBuildBranchAndProgress(build.Id, branchFilter);
 					build.Branch = result[0];
 					build.Progress = result[1];
 				}

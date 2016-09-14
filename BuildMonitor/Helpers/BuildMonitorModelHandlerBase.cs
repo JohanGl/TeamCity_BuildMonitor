@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using BuildMonitor.Models.Home;
 using Newtonsoft.Json;
@@ -61,27 +62,33 @@ namespace BuildMonitor.Helpers
 					var buildJson = runningBuildsJson.build[i];
 
 					var buildId = (string)buildJson.buildTypeId;
+					var branchName = (string) buildJson.branchName;
 					var url = teamCityUrl + (string)buildJson.href;
 
 					var buildStatusJsonString = RequestHelper.GetJson(url);
 					var buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
-
-					runningBuilds.Add(buildId, buildStatusJson);
+					
+					runningBuilds.Add(buildId + branchName, buildStatusJson);
+					if (!runningBuilds.ContainsKey(buildId))
+					{
+						runningBuilds.Add(buildId, buildStatusJson);    
+					}
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
+				Debug.Write(ex);
 			}
 		}
 
-		protected void UpdateBuildStatusFromRunningBuildJson(string buildId)
+		protected void UpdateBuildStatusFromRunningBuildJson(string buildId, string branchName = null)
 		{
-			buildStatusJson = runningBuilds[buildId];
+			buildStatusJson = runningBuilds[buildId + branchName];
 		}
 
-		protected BuildStatus GetBuildStatusForRunningBuild(string buildId)
+		protected BuildStatus GetBuildStatusForRunningBuild(string buildId, string branchName = null)
 		{
-			if (runningBuilds.ContainsKey(buildId))
+			if (runningBuilds.ContainsKey(buildId + branchName))
 			{
 				return BuildStatus.Running;
 			}
@@ -107,19 +114,21 @@ namespace BuildMonitor.Helpers
 			}
 		}
 
-		protected string[] GetRunningBuildBranchAndProgress(string buildId)
+		protected string[] GetRunningBuildBranchAndProgress(string buildId, string branchName = null)
 		{
+			var runningBuild = runningBuilds[buildId + branchName];
+
 			var result = new[]
-            {
-                string.Empty,
-                string.Empty
-            };
+			{
+				string.Empty,
+				string.Empty
+			};
 
 			try
 			{
-				result[0] = (string)runningBuilds[buildId].branchName ?? "default";
+				result[0] = (string)runningBuild.branchName ?? "default";
 
-				var percentage = (string)runningBuilds[buildId].percentageComplete;
+				var percentage = (string)runningBuild.percentageComplete;
 				result[1] = !string.IsNullOrWhiteSpace(percentage) ? percentage + "%" : "0%";
 			}
 			catch
