@@ -4,7 +4,7 @@ namespace BuildMonitor.Helpers
 {
 	public static class TestsHelper
 	{
-		public static TestRunResult[] GetTestRunResults()
+		public static TestRunResult[] GetHistoryRunResults()
 		{
 			// TODO: Dummy data
 			TestRunResult[] result = new TestRunResult[100];
@@ -23,10 +23,10 @@ namespace BuildMonitor.Helpers
 			return result;
 		}
 
-		public static LatestTestRunResult GetLatestTestRunResult()
+		public static TestRunResult GetLatestRunResult()
 		{
 			// TODO: Dummy data!
-			return new LatestTestRunResult
+			return new TestRunResult
 			{
 				PassedCount = 100,
 				FailedCount = 3,

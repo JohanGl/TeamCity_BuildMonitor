@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using BuildMonitor.Helpers;
 using BuildMonitor.Models.Home;
-using BuildMonitor.Models.Tests;
+
 
 namespace BuildMonitor.Controllers
 {
@@ -47,43 +47,6 @@ namespace BuildMonitor.Controllers
 
 			return Json(result, JsonRequestBehavior.AllowGet);
 		
-		}
-
-		[HttpGet]
-		public JsonResult HistoryTests()
-		{
-			TestRunResult[] historyResults = TestsHelper.GetTestRunResults();
-			var historyResultResponse = new object[101];
-			historyResultResponse[0] = new object[] {"Builds", "Ignored", "Failed", "Passed"};
-
-			for (int i = 0; i < historyResults.Length; i++)
-			{
-				TestRunResult currentResult = historyResults[i];
-				historyResultResponse[i + 1] = new object[]
-				{
-					currentResult.BuildNumber,
-					currentResult.IgnoredCount,
-					currentResult.FailedCount,
-					currentResult.PassedCount
-				};
-			}
-
-			return Json(historyResultResponse, JsonRequestBehavior.AllowGet);
-		}
-
-
-		[HttpGet]
-		public JsonResult LatestTests()
-		{
-			LatestTestRunResult latestResult = TestsHelper.GetLatestTestRunResult();
-			var latestResultResponse = new object[] 
-			{
-				new object[] { "Status", "Count" },
-				new object[] { "Passed", latestResult.PassedCount },
-				new object[] { "Failed", latestResult.FailedCount },
-				new object[] { "Ignored", latestResult.IgnoredCount }
-			};
-			return Json(latestResultResponse, JsonRequestBehavior.AllowGet);
 		}
 
 
