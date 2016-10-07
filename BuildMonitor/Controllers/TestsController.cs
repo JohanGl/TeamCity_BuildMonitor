@@ -17,13 +17,14 @@ namespace BuildMonitor.Controllers
 			TestRunResult[] historyResults = TestsHelper.GetHistoryRunResults();
 
 			// Transform to the structure that is expected by the client.
-			var historyResultResponse = new object[101];
+			var historyResultResponse = new object[historyResults.Length + 1];
 			historyResultResponse[0] = new object[] { "Builds", "Ignored", "Failed", "Passed" };
 
+			// NOTE: The chart expects the results in reverse order.
 			for (int i = 0; i < historyResults.Length; i++)
 			{
 				TestRunResult currentResult = historyResults[i];
-				historyResultResponse[i + 1] = new object[]
+				historyResultResponse[historyResults.Length - i] = new object[]
 				{
 					currentResult.BuildNumber,
 					currentResult.IgnoredCount,
