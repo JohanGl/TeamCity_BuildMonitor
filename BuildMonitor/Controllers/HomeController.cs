@@ -1,9 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using BuildMonitor.Helpers;
 using BuildMonitor.Models.Home;
+
 
 namespace BuildMonitor.Controllers
 {
@@ -13,8 +15,8 @@ namespace BuildMonitor.Controllers
 
 		public HomeController()
 		{
-			modelHandler = new DefaultBuildMonitorModelHandler();
-			//modelHandler = new CustomBuildMonitorModelHandler();
+			// modelHandler = new DefaultBuildMonitorModelHandler();
+			modelHandler = new CustomBuildMonitorModelHandler();
 
 			RequestHelper.Username = ConfigurationManager.AppSettings["teamcity_username"];
 			RequestHelper.Password = ConfigurationManager.AppSettings["teamcity_password"];
@@ -44,7 +46,9 @@ namespace BuildMonitor.Controllers
 			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
+		
 		}
+
 
 		protected string RenderPartialViewToString(string viewName, object model)
 		{

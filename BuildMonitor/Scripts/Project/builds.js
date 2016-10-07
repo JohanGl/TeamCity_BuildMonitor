@@ -16,9 +16,7 @@
 				$("#last-updated").text(data.UpdatedText).removeClass("update-failure");
 			},
 			error: function (xhr, textStatus, errorThrown) {
-				$("#last-updated")
-					.text("Ajax error: " + textStatus + ". Details: " + errorThrown + " (HTTP " + xhr.status + ").")
-					.addClass("update-failure");
+				displayAjaxError(xhr, textStatus, errorThrown);
 			}
 		});
 	}, 15000);

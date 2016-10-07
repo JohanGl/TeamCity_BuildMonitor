@@ -8,7 +8,7 @@ namespace BuildMonitor
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.validate*"));
-			bundles.Add(new ScriptBundle("~/bundles/home").Include("~/Scripts/Project/home.js"));
+			bundles.Add(new ScriptBundle("~/bundles/home").Include("~/Scripts/Project/common.js", "~/Scripts/Project/builds.js", "~/Scripts/Project/tests.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js"));

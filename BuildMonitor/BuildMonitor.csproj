@@ -129,11 +129,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SettingsConfig.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
+    <Compile Include="Helpers\BuildsCache.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
+    <Compile Include="Helpers\TestsHelper.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
@@ -148,6 +152,10 @@
     <Compile Include="Models\Home\BuildsJson.cs" />
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
+    <Compile Include="Models\Home\Settings\Tests.cs" />
+    <Compile Include="Models\Tests\BuildDetails.cs" />
+    <Compile Include="Models\Tests\BuildSummary.cs" />
+    <Compile Include="Models\Tests\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,7 +181,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Project\home.js" />
+    <Content Include="Scripts\Project\common.js" />
+    <Content Include="Scripts\Project\tests.js" />
+    <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -193,8 +203,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_BuildItem.cshtml" />
     <Content Include="Web.AppSettings.config" />
+    <Content Include="Views\Home\_Tests.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Tests\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

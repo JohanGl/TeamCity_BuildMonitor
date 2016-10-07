@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -11,6 +12,9 @@
 	<div>
 		<div class="container-full">
 			@RenderBody()
+		</div>
+		<div class="container-full">
+			@{ Html.RenderPartial("_Tests"); }
 		</div>
 		<div class="container-full">
 			<hr />
