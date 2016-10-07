@@ -47,9 +47,9 @@ namespace BuildMonitor.Controllers
 			object[] latestResultResponse =
 			{
 				new object[] { "Status", "Count" },
-				new object[] { "Passed", latestResult.PassedCount },
-				new object[] { "Failed", latestResult.FailedCount },
-				new object[] { "Ignored", latestResult.IgnoredCount }
+				new object[] { "Passed: " + latestResult.PassedCount, latestResult.PassedCount },
+				new object[] { "Failed: " + latestResult.FailedCount, latestResult.FailedCount },
+				new object[] { "Ignored: " + latestResult.IgnoredCount, latestResult.IgnoredCount }
 			};
 
 			// Transform the result to JSON.
