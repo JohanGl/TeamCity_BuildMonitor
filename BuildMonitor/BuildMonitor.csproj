@@ -134,6 +134,7 @@
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
+    <Compile Include="Helpers\TestsHelper.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
@@ -148,6 +149,8 @@
     <Compile Include="Models\Home\BuildsJson.cs" />
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
+    <Compile Include="Models\Tests\LatestTestRunResult.cs" />
+    <Compile Include="Models\Tests\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,7 +197,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_BuildItem.cshtml" />
     <Content Include="Web.AppSettings.config" />
-    <Content Include="Views\_Tests.cshtml" />
+    <Content Include="Views\Home\_Tests.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
