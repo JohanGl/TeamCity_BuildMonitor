@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SettingsConfig.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
@@ -150,6 +151,9 @@
     <Compile Include="Models\Home\BuildsJson.cs" />
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
+    <Compile Include="Models\Home\Settings\Tests.cs" />
+    <Compile Include="Models\Tests\BuildDetails.cs" />
+    <Compile Include="Models\Tests\BuildSummary.cs" />
     <Compile Include="Models\Tests\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
