@@ -132,6 +132,7 @@
     <Compile Include="App_Start\SettingsConfig.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
+    <Compile Include="Helpers\BuildsCache.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />

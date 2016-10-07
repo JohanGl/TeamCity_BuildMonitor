@@ -14,7 +14,6 @@ namespace BuildMonitor.Helpers
 		private static readonly string FinishedBuildsUrl;
 		private static readonly string LatestFinishedBuildUrl;
 		private static readonly string BuildUrl;
-		private static readonly Dictionary<int, BuildDetails> BuildDetailsCache;
 
 		static TestsHelper()
 		{
@@ -22,8 +21,6 @@ namespace BuildMonitor.Helpers
 			TestsHelper.FinishedBuildsUrl = TestsHelper.TeamCityUrl + ConfigurationManager.AppSettings["teamcity_api_builds"] + "?locator=state:finished";
 			TestsHelper.LatestFinishedBuildUrl = FinishedBuildsUrl + "&count=1";
 			TestsHelper.BuildUrl = TestsHelper.TeamCityUrl + ConfigurationManager.AppSettings["teamcity_api_build"];
-
-			TestsHelper.BuildDetailsCache = new Dictionary<int, BuildDetails>();
 		}
 
 		public static TestRunResult[] GetHistoryRunResults()
@@ -108,9 +105,10 @@ namespace BuildMonitor.Helpers
 
 		private static BuildDetails GetBuildDetails(int buildId)
 		{
-			if (TestsHelper.BuildDetailsCache.ContainsKey(buildId))
+			BuildDetails cachedValue = BuildsCache.Get( buildId );
+			if( cachedValue != null )
 			{
-				return TestsHelper.BuildDetailsCache[buildId];
+				return cachedValue;
 			}
 
 			string url = String.Format(CultureInfo.InvariantCulture, TestsHelper.BuildUrl, buildId);
@@ -125,10 +123,7 @@ namespace BuildMonitor.Helpers
 				IgnoredCount = buildJson.testOccurrences.ignored != null ? (int)buildJson.testOccurrences.ignored : 0
 			};
 
-			if (!TestsHelper.BuildDetailsCache.ContainsKey(buildId))
-			{
-				TestsHelper.BuildDetailsCache.Add(buildId, result);
-			}
+			BuildsCache.Add( buildId, result );
 
 			return result;
 		}
