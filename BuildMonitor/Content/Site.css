@@ -57,7 +57,7 @@ html * {
 /* Build monitor --------------------------------------------------------------------------------- */
 
 .projectRow {
-    clear:both;
+	clear:both;
 }
 .projectTitle {
 	color: #777;
@@ -229,4 +229,20 @@ html * {
 
 .update-failure {
 	color: #FB1B45;
+}
+
+/* Tests charts */
+
+
+#test_history_chart {
+	width: 69%; 
+	height: 450px; 
+	float: left;
+}
+
+#test_latest_chart {
+	width: 30%; 
+	height: 450px; 
+	float: left;
+	opacity: 0.8;
 }

@@ -173,7 +173,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Project\home.js" />
+    <Content Include="Scripts\Project\tests.js" />
+    <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -193,6 +194,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_BuildItem.cshtml" />
     <Content Include="Web.AppSettings.config" />
+    <Content Include="Views\_Tests.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
