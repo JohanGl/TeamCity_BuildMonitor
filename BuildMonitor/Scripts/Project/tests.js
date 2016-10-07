@@ -2,29 +2,39 @@
 google.charts.setOnLoadCallback(drawCharts);
 
 function drawCharts() {
-	setInterval(function () {
-		$.ajax({
-			url: '/Tests/History',
-			cache: false,
-			success: function (historyData) {
-				drawHistoryChart(historyData);
-			},
-			error: function (xhr, textStatus, errorThrown) {
-				displayAjaxError(xhr, textStatus, errorThrown);
-			}
-		});
+	loadHistoryChart();
+	loadLatestChart();
 
-		$.ajax({
-			url: '/Tests/Latest',
-			cache: false,
-			success: function (latestData) {
-				drawLatestChart(latestData);
-			},
-			error: function (xhr, textStatus, errorThrown) {
-				displayAjaxError(xhr, textStatus, errorThrown);
-			}
-		});
+	setInterval(function () {
+		loadHistoryChart();
+		loadLatestChart();
 	}, 60000);
+}
+
+function loadHistoryChart() {
+	$.ajax({
+		url: '/Tests/History',
+		cache: false,
+		success: function (historyData) {
+			drawHistoryChart(historyData);
+		},
+		error: function (xhr, textStatus, errorThrown) {
+			displayAjaxError(xhr, textStatus, errorThrown);
+		}
+	});
+}
+
+function loadLatestChart() {
+	$.ajax({
+		url: '/Tests/Latest',
+		cache: false,
+		success: function (latestData) {
+			drawLatestChart(latestData);
+		},
+		error: function (xhr, textStatus, errorThrown) {
+			displayAjaxError(xhr, textStatus, errorThrown);
+		}
+	});
 }
 
 function drawHistoryChart(historyData) {
@@ -32,7 +42,7 @@ function drawHistoryChart(historyData) {
 
 	var options = {
 		isStacked: true,
-		chartArea: { width: '90%', height: '90%' },
+		chartArea: { width: '90%', height: '80%' },
 		backgroundColor: {
 			fill: '#1C1E22'
 		},

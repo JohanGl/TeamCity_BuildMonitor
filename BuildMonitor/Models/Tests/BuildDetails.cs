@@ -1,8 +1,8 @@
 ﻿namespace BuildMonitor.Models.Tests
 {
-	public class TestRunResult
+	public class BuildDetails
 	{
-		public string BuildNumber { get; set; }
+		public string Number { get; set; }
 
 		public int PassedCount { get; set; }
 
