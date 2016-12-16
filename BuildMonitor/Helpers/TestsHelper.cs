@@ -115,12 +115,14 @@ namespace BuildMonitor.Helpers
 			string buildJsonString = RequestHelper.GetJson(url);
 			dynamic buildJson = JsonConvert.DeserializeObject<dynamic>(buildJsonString);
 
+			dynamic testResults = buildJson.testOccurrences;
+
 			BuildDetails result = new BuildDetails
 			{
 				Number = (string)buildJson.number,
-				PassedCount = buildJson.testOccurrences.passed != null ? (int)buildJson.testOccurrences.passed : 0,
-				FailedCount = buildJson.testOccurrences.failed != null ? (int)buildJson.testOccurrences.failed : 0,
-				IgnoredCount = buildJson.testOccurrences.ignored != null ? (int)buildJson.testOccurrences.ignored : 0
+				PassedCount = testResults != null && testResults.passed != null ? (int)testResults.passed : 0,
+				FailedCount = testResults != null && testResults.failed != null ? (int)testResults.failed : 0,
+				IgnoredCount = testResults != null && testResults.ignored != null ? (int)testResults.ignored : 0
 			};
 
 			BuildsCache.Add( buildId, result );
