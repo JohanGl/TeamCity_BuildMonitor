@@ -1,6 +1,13 @@
 ﻿google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawCharts);
 
+// Storing the charts globally, so we can call clearChart before redrawing the charts, to fix the memory leak issue in Google Charts.
+var charts = {
+	latest: null,
+	history: null
+};
+
+
 function drawCharts() {
 	loadHistoryChart();
 	loadLatestChart();
@@ -71,8 +78,12 @@ function drawHistoryChart(historyData) {
 		}
 	};
 
-	var chart = new google.visualization.AreaChart(document.getElementById('test_history_chart'));
-	chart.draw(dataTable, options);
+	if (charts.history) {
+		charts.history.clearChart();
+	}
+
+	charts.history = new google.visualization.AreaChart(document.getElementById('test_history_chart'));
+	charts.history.draw(dataTable, options);
 }
 
 function drawLatestChart(latestData) {
@@ -102,6 +113,10 @@ function drawLatestChart(latestData) {
 		}
 	};
 
-	var chart = new google.visualization.PieChart(document.getElementById('test_latest_chart'));
-	chart.draw(dataTable, options);
+	if (charts.latest) {
+		charts.latest.clearChart();
+	}
+
+	charts.latest = new google.visualization.PieChart(document.getElementById('test_latest_chart'));
+	charts.latest.draw(dataTable, options);
 }
