@@ -26,11 +26,11 @@ namespace BuildMonitor.Helpers
 		public static TestRunResult[] GetHistoryRunResults()
 		{
 			List<BuildSummary> buildSummaries = TestsHelper.GetFinishedBuilds(Settings.Current.Tests.Id);
+			int buildSummaryCount = Math.Min(buildSummaries.Count, Settings.Current.Tests.MaxBuildCount);
 
+			TestRunResult[] result = new TestRunResult[buildSummaryCount];
 
-			TestRunResult[] result = new TestRunResult[Settings.Current.Tests.MaxBuildCount];
-
-			for (int i = 0; i < Settings.Current.Tests.MaxBuildCount; i++)
+			for (int i = 0; i < buildSummaryCount; i++)
 			{
 				BuildDetails buildDetails = TestsHelper.GetBuildDetails(buildSummaries[i].Id);
 
