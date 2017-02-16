@@ -46,9 +46,16 @@ namespace BuildMonitor.Helpers
 			return result;
 		}
 
+
 		public static TestRunResult GetLatestRunResult()
 		{
-			BuildSummary latestBuildSummary = TestsHelper.GetLatestFinishedBuild(Settings.Current.Tests.Id);
+			return TestsHelper.GetLatestRunResult(Settings.Current.Tests.Id);
+		}
+
+
+		public static TestRunResult GetLatestRunResult(string buildConfigurationId)
+		{
+			BuildSummary latestBuildSummary = TestsHelper.GetLatestFinishedBuild(buildConfigurationId);
 			BuildDetails latestBuild = TestsHelper.GetBuildDetails(latestBuildSummary.Id);
 
 			return new TestRunResult

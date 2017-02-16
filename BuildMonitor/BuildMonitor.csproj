@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SettingsConfig.cs" />
+    <Compile Include="Controllers\AutomationController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
     <Compile Include="Helpers\BuildsCache.cs" />
@@ -138,6 +139,13 @@
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\TestsHelper.cs" />
+    <Compile Include="Models\Automation\Settings\Group.cs" />
+    <Compile Include="Models\Automation\Settings\Job.cs" />
+    <Compile Include="Models\Automation\Settings\Settings.cs" />
+    <Compile Include="Models\Automation\ViewModels\Gauge.cs" />
+    <Compile Include="Models\Automation\ViewModels\Dashboard.cs" />
+    <Compile Include="Models\Automation\ViewModels\Section.cs" />
+    <Compile Include="Models\Automation\ViewModels\TestRunResultsResponse.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
@@ -159,6 +167,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Automation.example.config" />
+    <Content Include="App_Data\Automation.config" />
     <Content Include="App_Data\Settings.example.xml" />
     <Content Include="App_Data\Settings.xml" />
     <Content Include="Content\bootstrap.css" />
@@ -182,6 +192,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Project\common.js" />
+    <Content Include="Scripts\Project\automation.js" />
     <Content Include="Scripts\Project\tests.js" />
     <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -204,6 +215,7 @@
     <Content Include="Views\Shared\_BuildItem.cshtml" />
     <Content Include="Web.AppSettings.config" />
     <Content Include="Views\Home\_Tests.cshtml" />
+    <Content Include="Views\Automation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Tests\" />

@@ -1,0 +1,34 @@
+﻿@using BuildMonitor.Models.Automation.ViewModels
+@model Dashboard
+@{
+	ViewBag.Title = "Automation Monitor";
+}
+
+@foreach (Section section in Model.Sections)
+{
+	<div class="projectRow">
+		<h3 class="projectTitle">▪▪▪ @Html.Raw(section.Title) ▪▪▪</h3>
+
+		<div class="row">
+			@foreach (Gauge gauge in section.Gauges)
+			{
+				<div class="col-sm-6 col-md-4 col-lg-3 automation-gauge">
+					<div class="well">
+						<h4 class="buildTitle text-cutoff">
+							<a href=@gauge.DetailsUrl target="_blank">@gauge.Title</a>
+						</h4>
+
+						<div class="pie-chart" data-build-configuration-id="@gauge.BuildConfigurationId"></div>
+
+						<h2 class="buildInfoBranch text-cutoff">@gauge.Environment</h2>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+}
+
+@section scripts {
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	@Scripts.Render("~/bundles/automation")
+}
