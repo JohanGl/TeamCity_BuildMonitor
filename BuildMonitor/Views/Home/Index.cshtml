@@ -21,6 +21,10 @@
 	</div>
 }
 
+@section BottomLane {
+	@{ Html.RenderPartial("_Tests"); }
+}
+
 @section scripts {
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	@Scripts.Render("~/bundles/home")

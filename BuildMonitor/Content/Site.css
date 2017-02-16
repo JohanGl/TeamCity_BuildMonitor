@@ -71,6 +71,11 @@ html * {
 	margin-top: -5px;
 }
 
+.automation-gauge .buildTitle {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
 .buildInfo {
 	margin-top: -8px;
 	margin-bottom: -3px;
@@ -85,6 +90,11 @@ html * {
 	font-size: 20px;
 	color: #777;
 	margin-bottom: 2px;
+}
+
+.automation-gauge .buildInfoBranch {
+	margin-top: 15px;
+	text-align: center;
 }
 
 .buildInfoProgressHighlight {
@@ -245,4 +255,8 @@ html * {
 	height: 450px; 
 	float: left;
 	opacity: 0.8;
+}
+
+.pie-chart{
+	height: 300px; 
 }

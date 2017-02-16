@@ -1,7 +1,8 @@
-﻿using BuildMonitor.Models.Home.Settings;
-using System;
+﻿using System;
 using System.IO;
 using System.Xml.Serialization;
+using AutomationSettings = BuildMonitor.Models.Automation.Settings.Settings;
+using HomeSettings = BuildMonitor.Models.Home.Settings.Settings;
 
 namespace BuildMonitor
 {
@@ -9,12 +10,28 @@ namespace BuildMonitor
 	{
 		public static void Initialize()
 		{
-			string path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/Settings.xml";
-			using (var reader = new StreamReader(path))
+			LoadAutomationConfig();
+			LoadBuildConfig();
+		}
+
+		private static void LoadAutomationConfig()
+		{
+			string path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/Automation.config";
+			using (StreamReader reader = new StreamReader(path))
 			{
-				var serializer = new XmlSerializer(typeof(Settings));
-				Settings.Current = (Settings)serializer.Deserialize(reader);
-			}			
+				XmlSerializer serializer = new XmlSerializer(typeof(AutomationSettings));
+				AutomationSettings.Current = (AutomationSettings)serializer.Deserialize(reader);
+			}
+		}
+
+		private static void LoadBuildConfig()
+		{
+			string path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/Settings.xml";
+			using (StreamReader reader = new StreamReader(path))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(HomeSettings));
+				HomeSettings.Current = (HomeSettings)serializer.Deserialize(reader);
+			}
 		}
 	}
 }
