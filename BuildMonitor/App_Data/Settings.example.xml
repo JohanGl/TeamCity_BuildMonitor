@@ -25,4 +25,5 @@
     </Group>
   </Groups>
   <Tests id="TeamCity_Job_Id" maxBuildCount="10" text="Human friendly title to display" />
+  <LastUpdateWarning id="TeamCity_Job_Id" text="Human friendly title to display" />
 </Settings>

@@ -142,63 +142,9 @@ namespace BuildMonitor.Helpers
 
 		protected string GetLastRunText()
 		{
-			const int second = 1;
-			const int minute = 60 * second;
-			const int hour = 60 * minute;
-			const int day = 24 * hour;
-			const int month = 30 * day;
-
-			try
-			{
-				var dateTime = DateTime.ParseExact((string)buildStatusJson.startDate, "yyyyMMdd'T'HHmmsszzz", CultureInfo.InvariantCulture);
-
-				var timeSpan = new TimeSpan(DateTime.Now.Ticks - dateTime.Ticks);
-				double delta = Math.Abs(timeSpan.TotalSeconds);
-
-				if (delta < 1 * minute)
-				{
-					return timeSpan.Seconds == 1 ? "one second ago" : timeSpan.Seconds + " seconds ago";
-				}
-				if (delta < 2 * minute)
-				{
-					return "a minute ago";
-				}
-				if (delta < 45 * minute)
-				{
-					return timeSpan.Minutes + " minutes ago";
-				}
-				if (delta < 90 * minute)
-				{
-					return "an hour ago";
-				}
-				if (delta < 24 * hour)
-				{
-					return timeSpan.Hours + " hours ago";
-				}
-				if (delta < 48 * hour)
-				{
-					return "yesterday";
-				}
-				if (delta < 30 * day)
-				{
-					return timeSpan.Days + " days ago";
-				}
-
-				if (delta < 12 * month)
-				{
-					int months = Convert.ToInt32(Math.Floor((double)timeSpan.Days / 30));
-					return months <= 1 ? "one month ago" : months + " months ago";
-				}
-				else
-				{
-					int years = Convert.ToInt32(Math.Floor((double)timeSpan.Days / 365));
-					return years <= 1 ? "one year ago" : years + " years ago";
-				}
-			}
-			catch
-			{
-				return string.Empty;
-			}
+			DateTime dateTime = DateTime.ParseExact((string)buildStatusJson.startDate, "yyyyMMdd'T'HHmmsszzz", CultureInfo.InvariantCulture);
+			TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks - dateTime.Ticks);
+			return TestsHelper.FormatTimestamp(timeSpan);
 		}
 	}
 }

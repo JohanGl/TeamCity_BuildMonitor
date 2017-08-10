@@ -260,3 +260,27 @@ html * {
 .pie-chart{
 	height: 300px; 
 }
+
+/* Last update warning overlay --------------------------------------------------------------------------------- */
+
+#lastUpdateWarning.overlay {
+	background-color: #272b30; 
+	margin: auto; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	z-index: 10; 
+}
+
+#lastUpdateWarning .message {
+	background-color: #1c1e22; 
+	border: 1px solid #0c0d0e; 
+	border-radius: 4px;
+	margin: 200px; 
+	padding: 100px; 
+	color: #fb1b45; 
+	text-align: center; 
+	font-size: 60px; 
+}
