@@ -32,6 +32,13 @@ This view is optimized to display the results of the tests in multiple build con
 
 ![](https://raw.githubusercontent.com/balassy/TeamCity_BuildMonitor/master/AutomationMonitor.png)
 
+Last Update Warning
+-------------------
+
+If a specified build configuration was updated more than 25 hours ago, a warning message is displayed instead of the dashboard.
+
+![](https://raw.githubusercontent.com/balassy/TeamCity_BuildMonitor/master/LastUpdateWarning.png)
+
 Installation
 -------------
 
