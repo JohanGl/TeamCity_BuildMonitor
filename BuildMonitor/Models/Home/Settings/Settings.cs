@@ -9,5 +9,7 @@ namespace BuildMonitor.Models.Home.Settings
 		public List<Group> Groups { get; set; }
 
 		public Tests Tests { get; set; }
+
+	    public LastUpdateWarning LastUpdateWarning { get; set; }
 	}
 }

@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SettingsConfig.cs" />
     <Compile Include="Controllers\AutomationController.cs" />
+    <Compile Include="Controllers\LastUpdateWarningController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
     <Compile Include="Helpers\BuildsCache.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Models\Home\HiddenJob.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
+    <Compile Include="Models\Home\Settings\LastUpdateWarning.cs" />
     <Compile Include="Models\Home\Settings\Settings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -161,6 +163,7 @@
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
     <Compile Include="Models\Home\Settings\Tests.cs" />
+    <Compile Include="Models\LastUpdateWarning\ViewModels\LastUpdateWarningResponse.cs" />
     <Compile Include="Models\Tests\BuildDetails.cs" />
     <Compile Include="Models\Tests\BuildSummary.cs" />
     <Compile Include="Models\Tests\TestRunResult.cs" />
@@ -193,6 +196,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Project\common.js" />
     <Content Include="Scripts\Project\automation.js" />
+    <Content Include="Scripts\Project\lastUpdateWarning.js" />
     <Content Include="Scripts\Project\tests.js" />
     <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -218,6 +222,7 @@
     <Content Include="Views\Automation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\LastUpdateWarning\" />
     <Folder Include="Views\Tests\" />
   </ItemGroup>
   <ItemGroup>
