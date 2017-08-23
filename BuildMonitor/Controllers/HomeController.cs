@@ -25,7 +25,13 @@ namespace BuildMonitor.Controllers
 		public ActionResult Index()
 		{
 			var model = _modelHandler.GetModel();
-			return View(model);
+		    var octoViewModel = _octopusHandler.GetModel();
+            var mainModel = new MainMonitorViewMod()
+            {
+                BuildMonitor = model,
+                OctopusMonitor = octoViewModel
+            };
+			return View(mainModel);
 		}
 
 	    public string GetOctopus()
