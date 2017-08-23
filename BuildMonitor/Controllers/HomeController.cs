@@ -9,12 +9,14 @@ namespace BuildMonitor.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly IBuildMonitorModelHandler modelHandler;
+		private readonly IBuildMonitorModelHandler _modelHandler;
+        private readonly IOctopusHandler _octopusHandler;
 
 		public HomeController()
 		{
-			modelHandler = new DefaultBuildMonitorModelHandler();
+			_modelHandler = new DefaultBuildMonitorModelHandler();
 			//modelHandler = new CustomBuildMonitorModelHandler();
+		    _octopusHandler = new OctopusHandler();
 
 			RequestHelper.Username = ConfigurationManager.AppSettings["teamcity_username"];
 			RequestHelper.Password = ConfigurationManager.AppSettings["teamcity_password"];
@@ -22,13 +24,18 @@ namespace BuildMonitor.Controllers
 
 		public ActionResult Index()
 		{
-			var model = modelHandler.GetModel();
+			var model = _modelHandler.GetModel();
 			return View(model);
 		}
 
+	    public string GetOctopus()
+	    {
+	        return _octopusHandler.GetJson();
+        }
+
 		public JsonResult GetBuilds()
 		{
-			var model = modelHandler.GetModel();
+			var model = _modelHandler.GetModel();
 
 			var builds = model.Projects.SelectMany(p => p.Builds).ToList();
 

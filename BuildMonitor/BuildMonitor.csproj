@@ -132,6 +132,7 @@
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
+    <Compile Include="Helpers\OctopusHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
