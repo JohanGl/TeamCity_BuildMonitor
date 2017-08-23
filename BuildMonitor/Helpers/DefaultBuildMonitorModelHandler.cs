@@ -47,8 +47,8 @@ namespace BuildMonitor.Helpers
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
-				build.Branch = buildStatusJson.branchName ?? "default";
-				build.Status = GetBuildStatusForRunningBuild(build.Id);
+                build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
+                build.Status = GetBuildStatusForRunningBuild(build.Id);
 
 				if (build.Status == BuildStatus.Running)
 				{
@@ -58,6 +58,7 @@ namespace BuildMonitor.Helpers
 				build.UpdatedBy = GetUpdatedBy();
 				build.LastRunText = GetLastRunText();
 				build.IsQueued = IsBuildQueued(build.Id);
+				build.StatusDescription = (string)buildStatusJson.statusText;
 
 				if (build.Status == BuildStatus.Running)
 				{
@@ -100,23 +101,30 @@ namespace BuildMonitor.Helpers
 		{
 			try
 			{
-				if ((string)buildStatusJson.triggered.type == "user")
+				var triggerType = (string)buildStatusJson.triggered.type;
+                if (triggerType == "user")
 				{
 					return (string)buildStatusJson.triggered.user.name;
 				}
-				else if ((string)buildStatusJson.triggered.type == "unknown")
+
+				if (triggerType == "vcs" && buildStatusJson.lastChanges != null)
+				{
+					var result = RequestHelper.GetJson(teamCityUrl + buildStatusJson.lastChanges.change[0].href);
+					var change = JsonConvert.DeserializeObject<dynamic>(result);
+
+					return (string)change.user.name;
+				}
+
+				if (triggerType == "unknown")
 				{
 					return "TeamCity";
-				}
-				else
-				{
-					return "Unknown";
 				}
 			}
 			catch
 			{
-				return "Unknown";
 			}
+
+			return "Unknown";
 		}
 	}
 }

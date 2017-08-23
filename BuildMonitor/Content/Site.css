@@ -56,9 +56,13 @@ html * {
 
 /* Build monitor --------------------------------------------------------------------------------- */
 
+.projectRow {
+    clear:both;
+}
 .projectTitle {
 	color: #777;
 	margin-top: -12px;
+	display: inline-block;
 }
 
 .buildTitle {

@@ -4,6 +4,7 @@
 	<div class="well">
 		<h4 class="buildTitle text-cutoff">@Model.Name</h4>
 		<h2 class="status-@Model.Status text-cutoff">@Model.StatusText</h2>
+		<p class="buildInfo text-cutoff">@Model.StatusDescription</p>
 		<p class="buildInfoBranch text-cutoff">
 			Branch <span class="buildInfoHighlight">@Model.Branch</span>
 			@if (!string.IsNullOrWhiteSpace(Model.Progress))
