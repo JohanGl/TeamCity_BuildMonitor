@@ -1,9 +1,9 @@
-﻿@model BuildMonitor.Models.Home.BuildMonitorViewModel
+﻿@model BuildMonitor.Models.Home.MainMonitorViewMod
 @{
 	ViewBag.Title = "Build Monitor";
 }
 
-@foreach (var project in Model.Projects)
+@foreach (var project in Model.BuildMonitor.Projects)
 {
 	if (project.Builds.Count == 0)
 	{

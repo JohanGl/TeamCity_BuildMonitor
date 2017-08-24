@@ -132,9 +132,15 @@
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
+    <Compile Include="Helpers\OctopusHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
+    <Compile Include="Models\Home\MainMonitorViewMod.cs" />
+    <Compile Include="Models\Home\OctopusEnvironment.cs" />
+    <Compile Include="Models\Home\OctopusItem.cs" />
+    <Compile Include="Models\Home\OctopusMonitorViewModel.cs" />
+    <Compile Include="Models\Home\OctopusProject.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
     <Compile Include="Models\Home\Settings\Settings.cs" />

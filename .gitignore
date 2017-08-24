@@ -36,4 +36,7 @@ npm-debug.log
 *.ipr
 *.iws
 /.project
+
 /packages
+.vs/
+
