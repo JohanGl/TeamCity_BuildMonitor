@@ -47,6 +47,11 @@ namespace BuildMonitor.Helpers
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
+                if (buildStatusJson == null)
+                {
+                    continue; // This job has no builds yet.
+                }
+
                 build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
                 build.Status = GetBuildStatusForRunningBuild(build.Id);
 

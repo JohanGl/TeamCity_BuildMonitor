@@ -2,15 +2,15 @@
 
 namespace BuildMonitor.Models.Home.Settings
 {
-	public class Job
+	public class Tests
 	{
 		[XmlAttribute("id")]
 		public string Id { get; set; }
 
+		[XmlAttribute("maxBuildCount")]
+		public int MaxBuildCount { get; set; }
+
 		[XmlAttribute("text")]
 		public string Text { get; set; }
-
-		[XmlAttribute("branch")]
-		public string Branch { get; set; }
 	}
 }

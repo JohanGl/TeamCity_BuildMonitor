@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using BuildMonitor.Models.Home;
 using Newtonsoft.Json;
@@ -61,27 +62,33 @@ namespace BuildMonitor.Helpers
 					var buildJson = runningBuildsJson.build[i];
 
 					var buildId = (string)buildJson.buildTypeId;
+					var branchName = (string) buildJson.branchName;
 					var url = teamCityUrl + (string)buildJson.href;
 
 					var buildStatusJsonString = RequestHelper.GetJson(url);
 					var buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
-
-					runningBuilds.Add(buildId, buildStatusJson);
+					
+					runningBuilds.Add(buildId + branchName, buildStatusJson);
+					if (!runningBuilds.ContainsKey(buildId))
+					{
+						runningBuilds.Add(buildId, buildStatusJson);    
+					}
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
+				Debug.Write(ex);
 			}
 		}
 
-		protected void UpdateBuildStatusFromRunningBuildJson(string buildId)
+		protected void UpdateBuildStatusFromRunningBuildJson(string buildId, string branchName = null)
 		{
-			buildStatusJson = runningBuilds[buildId];
+			buildStatusJson = runningBuilds[buildId + branchName];
 		}
 
-		protected BuildStatus GetBuildStatusForRunningBuild(string buildId)
+		protected BuildStatus GetBuildStatusForRunningBuild(string buildId, string branchName = null)
 		{
-			if (runningBuilds.ContainsKey(buildId))
+			if (runningBuilds.ContainsKey(buildId + branchName))
 			{
 				return BuildStatus.Running;
 			}
@@ -107,19 +114,21 @@ namespace BuildMonitor.Helpers
 			}
 		}
 
-		protected string[] GetRunningBuildBranchAndProgress(string buildId)
+		protected string[] GetRunningBuildBranchAndProgress(string buildId, string branchName = null)
 		{
+			var runningBuild = runningBuilds[buildId + branchName];
+
 			var result = new[]
-            {
-                string.Empty,
-                string.Empty
-            };
+			{
+				string.Empty,
+				string.Empty
+			};
 
 			try
 			{
-				result[0] = (string)runningBuilds[buildId].branchName ?? "default";
+				result[0] = (string)runningBuild.branchName ?? "default";
 
-				var percentage = (string)runningBuilds[buildId].percentageComplete;
+				var percentage = (string)runningBuild.percentageComplete;
 				result[1] = !string.IsNullOrWhiteSpace(percentage) ? percentage + "%" : "0%";
 			}
 			catch
@@ -133,63 +142,9 @@ namespace BuildMonitor.Helpers
 
 		protected string GetLastRunText()
 		{
-			const int second = 1;
-			const int minute = 60 * second;
-			const int hour = 60 * minute;
-			const int day = 24 * hour;
-			const int month = 30 * day;
-
-			try
-			{
-				var dateTime = DateTime.ParseExact((string)buildStatusJson.startDate, "yyyyMMdd'T'HHmmsszzz", CultureInfo.InvariantCulture);
-
-				var timeSpan = new TimeSpan(DateTime.Now.Ticks - dateTime.Ticks);
-				double delta = Math.Abs(timeSpan.TotalSeconds);
-
-				if (delta < 1 * minute)
-				{
-					return timeSpan.Seconds == 1 ? "one second ago" : timeSpan.Seconds + " seconds ago";
-				}
-				if (delta < 2 * minute)
-				{
-					return "a minute ago";
-				}
-				if (delta < 45 * minute)
-				{
-					return timeSpan.Minutes + " minutes ago";
-				}
-				if (delta < 90 * minute)
-				{
-					return "an hour ago";
-				}
-				if (delta < 24 * hour)
-				{
-					return timeSpan.Hours + " hours ago";
-				}
-				if (delta < 48 * hour)
-				{
-					return "yesterday";
-				}
-				if (delta < 30 * day)
-				{
-					return timeSpan.Days + " days ago";
-				}
-
-				if (delta < 12 * month)
-				{
-					int months = Convert.ToInt32(Math.Floor((double)timeSpan.Days / 30));
-					return months <= 1 ? "one month ago" : months + " months ago";
-				}
-				else
-				{
-					int years = Convert.ToInt32(Math.Floor((double)timeSpan.Days / 365));
-					return years <= 1 ? "one year ago" : years + " years ago";
-				}
-			}
-			catch
-			{
-				return string.Empty;
-			}
+			DateTime dateTime = DateTime.ParseExact((string)buildStatusJson.startDate, "yyyyMMdd'T'HHmmsszzz", CultureInfo.InvariantCulture);
+			TimeSpan timeSpan = new TimeSpan(DateTime.Now.Ticks - dateTime.Ticks);
+			return TestsHelper.FormatTimestamp(timeSpan);
 		}
 	}
 }

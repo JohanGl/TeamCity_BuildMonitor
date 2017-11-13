@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BuildMonitor.Models.Home.Settings
+namespace BuildMonitor.Models.Automation.Settings
 {
 	public class Job
 	{
@@ -12,5 +12,8 @@ namespace BuildMonitor.Models.Home.Settings
 
 		[XmlAttribute("branch")]
 		public string Branch { get; set; }
+
+		[XmlAttribute("environment")]
+		public string Environment { get; set; }
 	}
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Groups>
+    <Group name="Backend">
+      <Jobs>
+        <Job id="TeamCity_Job_Id_1" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_2" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_3" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_4" text="Human friendly name to display" branch="optional-branch-name" />
+      </Jobs>
+    </Group>
+    <Group name="Frontend">
+      <Jobs>
+        <Job id="TeamCity_Job_Id_5" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_6" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_7" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_8" text="Human friendly name to display" branch="optional-branch-name" />
+      </Jobs>
+    </Group>
+    <Group name="Tests">
+      <Jobs>
+        <Job id="TeamCity_Job_Id_9" text="Human friendly name to display" branch="optional-branch-name" />
+        <Job id="TeamCity_Job_Id_10" text="Human friendly name to display" branch="optional-branch-name" />
+      </Jobs>
+    </Group>
+  </Groups>
+  <Tests id="TeamCity_Job_Id" maxBuildCount="10" text="Human friendly title to display" />
+  <LastUpdateWarning id="TeamCity_Job_Id" text="Human friendly title to display" />
+
+  <StatisticsPie buildConfigurationId="TeamCity_Job_Id">
+    <StatisticsDataPoints>
+      <StatisticsDataPoint name="variable_name_1" label="My Value 1" />
+      <StatisticsDataPoint name="variable_name_2" label="My Value 2" />
+    </StatisticsDataPoints>
+  </StatisticsPie>
+</Settings>

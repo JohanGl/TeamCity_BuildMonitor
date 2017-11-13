@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -8,9 +9,16 @@
 	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+	<div id="lastUpdateWarning" class="overlay" style="display: none;">
+		<div class="message">
+		</div>
+	</div>
 	<div>
 		<div class="container-full">
 			@RenderBody()
+		</div>
+		<div class="container-full">
+			@RenderSection("BottomLane", false)			
 		</div>
 		<div class="container-full">
 			<hr />

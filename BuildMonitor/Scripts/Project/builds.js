@@ -5,6 +5,7 @@
 	setInterval(function () {
 		$.ajax({
 			url: '/Home/GetBuilds',
+			cache: false,
 			success: function (data) {
 				$.each(data.Builds, function (i, build) {
 					var divId = "#BuildDiv-" + build.Id;
@@ -12,9 +13,11 @@
 					buildDiv.replaceWith(build.Content);
 				});
 
-				$("#last-updated").text(data.UpdatedText);
+				$("#last-updated").text(data.UpdatedText).removeClass("update-failure");
 			},
-			cache: false
+			error: function (xhr, textStatus, errorThrown) {
+				displayAjaxError(xhr, textStatus, errorThrown);
+			}
 		});
 	}, 15000);
 });

@@ -129,14 +129,29 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SettingsConfig.cs" />
+    <Compile Include="Controllers\AutomationController.cs" />
+    <Compile Include="Controllers\LastUpdateWarningController.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
+    <Compile Include="Helpers\BuildStatisticsCache.cs" />
+    <Compile Include="Helpers\BuildsCache.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />
     <Compile Include="Helpers\DefaultBuildMonitorModelHandler.cs" />
+    <Compile Include="Helpers\TestsHelper.cs" />
+    <Compile Include="Models\Automation\Settings\Group.cs" />
+    <Compile Include="Models\Automation\Settings\Job.cs" />
+    <Compile Include="Models\Automation\Settings\Settings.cs" />
+    <Compile Include="Models\Automation\ViewModels\Gauge.cs" />
+    <Compile Include="Models\Automation\ViewModels\Dashboard.cs" />
+    <Compile Include="Models\Automation\ViewModels\Section.cs" />
+    <Compile Include="Models\Automation\ViewModels\TestRunResultsResponse.cs" />
     <Compile Include="Models\Home\HiddenJob.cs" />
     <Compile Include="Models\Home\Settings\Group.cs" />
     <Compile Include="Models\Home\Settings\Job.cs" />
+    <Compile Include="Models\Home\Settings\LastUpdateWarning.cs" />
     <Compile Include="Models\Home\Settings\Settings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,9 +163,20 @@
     <Compile Include="Models\Home\BuildsJson.cs" />
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
+    <Compile Include="Models\Home\Settings\StatisticsDataPoint.cs" />
+    <Compile Include="Models\Home\Settings\StatisticsPie.cs" />
+    <Compile Include="Models\Home\Settings\Tests.cs" />
+    <Compile Include="Models\LastUpdateWarning\ViewModels\LastUpdateWarningResponse.cs" />
+    <Compile Include="Models\Statistics\BuildStatistics.cs" />
+    <Compile Include="Models\Tests\BuildDetails.cs" />
+    <Compile Include="Models\Tests\BuildSummary.cs" />
+    <Compile Include="Models\Tests\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Automation.example.config" />
+    <Content Include="App_Data\Automation.config" />
+    <Content Include="App_Data\Settings.example.xml" />
     <Content Include="App_Data\Settings.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
@@ -172,7 +198,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Project\home.js" />
+    <Content Include="Scripts\Project\common.js" />
+    <Content Include="Scripts\Project\automation.js" />
+    <Content Include="Scripts\Project\lastUpdateWarning.js" />
+    <Content Include="Scripts\Project\statisticsPie.js" />
+    <Content Include="Scripts\Project\tests.js" />
+    <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -191,8 +222,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_BuildItem.cshtml" />
+    <Content Include="Web.AppSettings.config" />
+    <Content Include="Views\Home\_Tests.cshtml" />
+    <Content Include="Views\Automation\Index.cshtml" />
+    <Content Include="Views\Home\_StatisticsPie.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\LastUpdateWarning\" />
+    <Folder Include="Views\Tests\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

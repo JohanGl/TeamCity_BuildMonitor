@@ -57,7 +57,7 @@ html * {
 /* Build monitor --------------------------------------------------------------------------------- */
 
 .projectRow {
-    clear:both;
+	clear:both;
 }
 .projectTitle {
 	color: #777;
@@ -69,6 +69,11 @@ html * {
 	font-size: 30px;
 	color: #eee;
 	margin-top: -5px;
+}
+
+.automation-gauge .buildTitle {
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .buildInfo {
@@ -85,6 +90,11 @@ html * {
 	font-size: 20px;
 	color: #777;
 	margin-bottom: 2px;
+}
+
+.automation-gauge .buildInfoBranch {
+	margin-top: 15px;
+	text-align: center;
 }
 
 .buildInfoProgressHighlight {
@@ -225,4 +235,57 @@ html * {
 
 .space {
 	padding-left: 20px;
+}
+
+.update-failure {
+	color: #FB1B45;
+}
+
+/* Tests charts */
+
+
+#test_history_chart {
+	width: 69%; 
+	height: 450px; 
+	float: left;
+}
+
+#test_latest_chart {
+	width: 30%; 
+	height: 450px; 
+	float: left;
+	opacity: 0.8;
+}
+
+.pie-chart{
+	height: 300px; 
+}
+
+#statistics_chart {
+	opacity: 0.8;
+	height: 450px;
+}
+
+/* Last update warning overlay --------------------------------------------------------------------------------- */
+
+#lastUpdateWarning.overlay {
+	background-color: #272b30; 
+	margin: auto; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	z-index: 10; 
+}
+
+#lastUpdateWarning .message {
+	background-color: #1c1e22; 
+	border: 1px solid #0c0d0e; 
+	border-radius: 4px;
+	margin: 200px; 
+	padding: 100px; 
+	color: #fb1b45; 
+	text-align: center; 
+	font-size: 60px; 
 }

@@ -21,6 +21,18 @@
 	</div>
 }
 
+@section BottomLane {
+	<div class="row">
+		<div class="col-lg-9">
+			@{ Html.RenderPartial("_Tests"); }
+		</div>
+		<div class="col-lg-3">
+			@{ Html.RenderPartial("_StatisticsPie"); }
+		</div>
+	</div>
+}
+
 @section scripts {
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	@Scripts.Render("~/bundles/home")
 }
