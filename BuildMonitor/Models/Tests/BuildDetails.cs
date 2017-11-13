@@ -12,6 +12,6 @@ namespace BuildMonitor.Models.Tests
 
 		public int IgnoredCount { get; set; }
 
-	    public DateTime FinishDate { get; set; }
+		public DateTime FinishDate { get; set; }
 	}
 }

@@ -134,6 +134,7 @@
     <Compile Include="Controllers\LastUpdateWarningController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\BuildMonitorModelHandlerBase.cs" />
+    <Compile Include="Helpers\BuildStatisticsCache.cs" />
     <Compile Include="Helpers\BuildsCache.cs" />
     <Compile Include="Helpers\CustomBuildMonitorModelHandler.cs" />
     <Compile Include="Helpers\IBuildMonitorModelHandler.cs" />
@@ -162,8 +163,12 @@
     <Compile Include="Models\Home\BuildsJson.cs" />
     <Compile Include="Models\Home\BuildStatus.cs" />
     <Compile Include="Models\Home\Project.cs" />
+    <Compile Include="Models\Home\Settings\StatisticsDataPoint.cs" />
+    <Compile Include="Models\Home\Settings\StatisticsPie.cs" />
     <Compile Include="Models\Home\Settings\Tests.cs" />
     <Compile Include="Models\LastUpdateWarning\ViewModels\LastUpdateWarningResponse.cs" />
+    <Compile Include="Models\Statistics\BuildStatistics.cs" />
+    <Compile Include="Models\Statistics\SingleStatisticsResponse.cs" />
     <Compile Include="Models\Tests\BuildDetails.cs" />
     <Compile Include="Models\Tests\BuildSummary.cs" />
     <Compile Include="Models\Tests\TestRunResult.cs" />

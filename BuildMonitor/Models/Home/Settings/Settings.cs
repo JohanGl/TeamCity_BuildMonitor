@@ -10,6 +10,8 @@ namespace BuildMonitor.Models.Home.Settings
 
 		public Tests Tests { get; set; }
 
-	    public LastUpdateWarning LastUpdateWarning { get; set; }
+		public LastUpdateWarning LastUpdateWarning { get; set; }
+
+		public StatisticsPie StatisticsPie { get; set; }
 	}
 }

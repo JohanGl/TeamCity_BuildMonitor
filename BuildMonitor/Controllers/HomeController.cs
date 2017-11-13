@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using BuildMonitor.Helpers;
 using BuildMonitor.Models.Home;
+using BuildMonitor.Models.Home.Settings;
+using BuildMonitor.Models.Statistics;
+using BuildMonitor.Models.Tests;
 
 
 namespace BuildMonitor.Controllers
@@ -46,9 +51,34 @@ namespace BuildMonitor.Controllers
 			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
-		
+
 		}
 
+		public JsonResult GetLastStatistics(string buildConfigurationId)
+		{
+			// Get the raw data.
+			BuildStatistics latestStatistics = TestsHelper.GetLatestRunStatistics(buildConfigurationId);
+
+			// Transform to the structure that is expected by the client.
+			object[] statisticsResultResponse = new object[latestStatistics.Items.Count + 1];
+			statisticsResultResponse[0] = new object[] {"Item", "Count"};
+			int counter = 1;
+			foreach (KeyValuePair<string, string> statisticsItem in latestStatistics.Items)
+			{
+				string label = String.Format(CultureInfo.InvariantCulture, "{0}: {1}", statisticsItem.Key, statisticsItem.Value);
+				int value = Int32.Parse(statisticsItem.Value);
+				statisticsResultResponse[counter] = new object[] {label, value};
+				counter++;
+			}
+
+			SingleStatisticsResponse response = new SingleStatisticsResponse
+			{
+				Results = statisticsResultResponse
+			};
+
+			// Transform the result to JSON.
+			return Json(response, JsonRequestBehavior.AllowGet);
+		}
 
 		protected string RenderPartialViewToString(string viewName, object model)
 		{
