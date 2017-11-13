@@ -107,7 +107,7 @@ function drawLatestChart(latestData) {
 		legend: {
 			textStyle: {
 				color: '#999',
-				fontSize: 26
+				fontSize: 20
 			},
 			position: 'bottom'
 		}

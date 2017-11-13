@@ -22,8 +22,14 @@
 }
 
 @section BottomLane {
-	@{ Html.RenderPartial("_Tests"); }
-	@{ Html.RenderPartial("_StatisticsPie"); }
+	<div class="row">
+		<div class="col-lg-9">
+			@{ Html.RenderPartial("_Tests"); }
+		</div>
+		<div class="col-lg-3">
+			@{ Html.RenderPartial("_StatisticsPie"); }
+		</div>
+	</div>
 }
 
 @section scripts {

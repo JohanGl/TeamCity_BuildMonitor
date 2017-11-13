@@ -46,14 +46,13 @@ function drawStatisticsChart(latestData) {
 			fontSize: 20
 		},
 		slices: {
-			0: { color: 'green' },
-			1: { color: '#FB1B45' },
-			2: { color: '#bbb' }
+			0: { color: '#FB1B45' },
+			1: { color: 'green' }
 		},
 		legend: {
 			textStyle: {
 				color: '#999',
-				fontSize: 26
+				fontSize: 20
 			},
 			position: 'bottom'
 		}
