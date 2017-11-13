@@ -27,7 +27,7 @@
   <Tests id="TeamCity_Job_Id" maxBuildCount="10" text="Human friendly title to display" />
   <LastUpdateWarning id="TeamCity_Job_Id" text="Human friendly title to display" />
 
-  <StatisticsPie>
+  <StatisticsPie buildConfigurationId="TeamCity_Job_Id">
     <StatisticsDataPoints>
       <StatisticsDataPoint name="variable_name_1" label="My Value 1" />
       <StatisticsDataPoint name="variable_name_2" label="My Value 2" />

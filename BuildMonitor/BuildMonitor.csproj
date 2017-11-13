@@ -168,7 +168,6 @@
     <Compile Include="Models\Home\Settings\Tests.cs" />
     <Compile Include="Models\LastUpdateWarning\ViewModels\LastUpdateWarningResponse.cs" />
     <Compile Include="Models\Statistics\BuildStatistics.cs" />
-    <Compile Include="Models\Statistics\SingleStatisticsResponse.cs" />
     <Compile Include="Models\Tests\BuildDetails.cs" />
     <Compile Include="Models\Tests\BuildSummary.cs" />
     <Compile Include="Models\Tests\TestRunResult.cs" />
@@ -202,6 +201,7 @@
     <Content Include="Scripts\Project\common.js" />
     <Content Include="Scripts\Project\automation.js" />
     <Content Include="Scripts\Project\lastUpdateWarning.js" />
+    <Content Include="Scripts\Project\statisticsPie.js" />
     <Content Include="Scripts\Project\tests.js" />
     <Content Include="Scripts\Project\builds.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -225,6 +225,7 @@
     <Content Include="Web.AppSettings.config" />
     <Content Include="Views\Home\_Tests.cshtml" />
     <Content Include="Views\Automation\Index.cshtml" />
+    <Content Include="Views\Home\_StatisticsPie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\LastUpdateWarning\" />

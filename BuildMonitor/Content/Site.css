@@ -261,6 +261,11 @@ html * {
 	height: 300px; 
 }
 
+#statistics_chart {
+	opacity: 0.8;
+	/* TODO */
+}
+
 /* Last update warning overlay --------------------------------------------------------------------------------- */
 
 #lastUpdateWarning.overlay {

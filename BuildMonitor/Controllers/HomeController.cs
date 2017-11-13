@@ -71,13 +71,8 @@ namespace BuildMonitor.Controllers
 				counter++;
 			}
 
-			SingleStatisticsResponse response = new SingleStatisticsResponse
-			{
-				Results = statisticsResultResponse
-			};
-
 			// Transform the result to JSON.
-			return Json(response, JsonRequestBehavior.AllowGet);
+			return Json(statisticsResultResponse, JsonRequestBehavior.AllowGet);
 		}
 
 		protected string RenderPartialViewToString(string viewName, object model)
