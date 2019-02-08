@@ -1,4 +1,4 @@
-﻿using BuildMonitor.Models.Home;
+﻿using BuildMonitor.Models.Index;
 using Newtonsoft.Json;
 
 namespace BuildMonitor.Helpers
@@ -43,12 +43,12 @@ namespace BuildMonitor.Helpers
 				build.Id = buildTypeJson.id;
 				build.Name = buildTypeJson.name;
 
-				var url = string.Format(buildStatusUrl, build.Id);
+				var url = string.Format(teamcitySettings.BuildStatus, build.Id);
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
-                build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
-                build.Status = GetBuildStatusForRunningBuild(build.Id);
+				build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
+				build.Status = GetBuildStatusForRunningBuild(build.Id);
 
 				if (build.Status == BuildStatus.Running)
 				{
@@ -58,7 +58,7 @@ namespace BuildMonitor.Helpers
 				build.UpdatedBy = GetUpdatedBy();
 				build.LastRunText = GetLastRunText();
 				build.IsQueued = IsBuildQueued(build.Id);
-				build.StatusDescription = (string)buildStatusJson.statusText;
+				build.StatusDescription = (string)buildStatusJson?.statusText ?? string.Empty;
 
 				if (build.Status == BuildStatus.Running)
 				{
@@ -102,14 +102,14 @@ namespace BuildMonitor.Helpers
 			try
 			{
 				var triggerType = (string)buildStatusJson.triggered.type;
-                if (triggerType == "user")
+				if (triggerType == "user")
 				{
 					return (string)buildStatusJson.triggered.user.name;
 				}
 
 				if (triggerType == "vcs" && buildStatusJson.lastChanges != null)
 				{
-					var result = RequestHelper.GetJson(teamCityUrl + buildStatusJson.lastChanges.change[0].href);
+					var result = RequestHelper.GetJson(teamcitySettings.Url + buildStatusJson.lastChanges.change[0].href);
 					var change = JsonConvert.DeserializeObject<dynamic>(result);
 
 					return (string)change.user.name;

@@ -2,6 +2,7 @@
 [Bb]in
 [Rr]ealse
 [Dd]ebug
+.vs/*
 ./Resharp*
 Thumbs.db
 cmd.exe

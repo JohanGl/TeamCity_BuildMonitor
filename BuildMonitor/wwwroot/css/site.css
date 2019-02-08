@@ -1,0 +1,233 @@
+﻿.container-full {
+	margin: 0 auto;
+	width: 100%;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+body {
+	background-color: #272B30;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: kenzo;
+	text-align: left;
+}
+
+a {
+	cursor: pointer;
+}
+
+@font-face {
+	font-family: 'kenzo';
+	src: url('../fonts/kenzo.eot');
+	src: url('../fonts/kenzo.eot?#iefix') format('embedded-opentype'), url('../fonts/kenzo.woff') format('woff'), url('../fonts/kenzo.ttf') format('truetype');
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}
+
+/* Custom */
+
+html * {
+	font-family: kenzo !important;
+}
+
+.navbar-space {
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+}
+
+/* Build monitor --------------------------------------------------------------------------------- */
+
+.jumbotron {
+	padding: 1rem 1rem;
+}
+
+.projectRow {
+	clear: both;
+}
+
+.projectTitle {
+	color: #777;
+	margin-top: -12px;
+	display: inline-block;
+}
+
+.buildTitle {
+	font-size: 30px;
+	color: #eee;
+	margin-top: -5px;
+}
+
+.buildInfo {
+	margin-top: -8px;
+	margin-bottom: -3px;
+	color: #777;
+}
+
+.buildInfoHighlight {
+	color: #999;
+}
+
+.buildInfoBranch {
+	font-size: 20px;
+	color: #777;
+	margin-bottom: 2px;
+}
+
+.buildInfoProgressHighlight {
+	-webkit-animation-name: pulsate; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+	-webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
+	animation-name: pulsate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.text-cutoff {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.status-None {
+	font-family: kenzo;
+	font-size: 75px;
+	color: #BBB;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
+.status-Success {
+	font-family: kenzo;
+	font-size: 75px;
+	color: #A9E800;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
+.status-Failure {
+	font-family: kenzo;
+	font-size: 75px;
+	color: #FB1B45;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
+.status-Error {
+	font-family: kenzo;
+	font-size: 75px;
+	color: #FB1B45;
+	margin-top: -20px;
+	margin-bottom: -5px;
+}
+
+.status-Running {
+	font-family: kenzo;
+	font-size: 75px;
+	margin-top: -20px;
+	margin-bottom: -5px;
+	-webkit-animation-name: pulsate; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+	-webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
+	animation-name: pulsate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.loader-charts {
+	font-family: kenzo;
+	font-size: 14px;
+	margin-top: -15px;
+	-webkit-animation-name: pulsate; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+	-webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
+	animation-name: pulsate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes pulsate {
+	0% {
+		color: #CFC291;
+	}
+
+	50% {
+		color: #FFF6C5;
+	}
+
+	100% {
+		color: #CFC291;
+	}
+}
+
+/* Color animation */
+@keyframes pulsate {
+	0% {
+		color: #CFC291;
+	}
+
+	50% {
+		color: #FFF6C5;
+	}
+
+	100% {
+		color: #CFC291;
+	}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes pulsate2 {
+	0% {
+		color: #FB1B45;
+	}
+
+	50% {
+		color: #ff8686;
+	}
+
+	100% {
+		color: #FB1B45;
+	}
+}
+
+/* Color animation */
+@keyframes pulsate2 {
+	0% {
+		color: #FB1B45;
+	}
+
+	50% {
+		color: #ff8686;
+	}
+
+	100% {
+		color: #FB1B45;
+	}
+}
+
+.span-chart {
+	color: #777;
+}
+
+.space {
+	padding-left: 20px;
+}

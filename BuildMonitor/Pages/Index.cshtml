@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Build Monitor";
+}
+
+@foreach (var project in Model.Projects)
+{
+	if (project.Builds.Count == 0)
+	{
+		continue;
+	}
+
+	<div class="projectRow">
+		<h3 class="projectTitle">▪▪▪ @project.Name ▪▪▪</h3>
+		<div class="row">
+			@foreach (var build in project.Builds)
+			{
+				@Html.Partial("_BuildItem", build);
+			}
+		</div>
+	</div>
+}

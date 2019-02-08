@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using BuildMonitor.Models.Home;
-using BuildMonitor.Models.Home.Settings;
+using BuildMonitor.Models.Index;
+using BuildMonitor.Models.Index.Settings;
 using Newtonsoft.Json;
 
 namespace BuildMonitor.Helpers
@@ -60,12 +60,12 @@ namespace BuildMonitor.Helpers
 				build.Id = buildTypeJson.id;
 				build.Name = job.Text ?? buildTypeJson.name;
 
-				var url = string.Format(buildStatusUrl, build.Id);
+				var url = string.Format(base.teamcitySettings.BuildStatus, build.Id);
 				var buildStatusJsonString = RequestHelper.GetJson(url);
 				buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
 
-                build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
-                build.Status = GetBuildStatusForRunningBuild(build.Id);
+				build.Branch = (buildStatusJson != null) ? (buildStatusJson.branchName ?? "default") : "unknown";
+				build.Status = GetBuildStatusForRunningBuild(build.Id);
 
 				if (build.Status == BuildStatus.Running)
 				{

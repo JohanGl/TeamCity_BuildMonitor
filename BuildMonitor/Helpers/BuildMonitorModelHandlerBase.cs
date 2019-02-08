@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
-using BuildMonitor.Models.Home;
+using BuildMonitor.Models;
+using BuildMonitor.Models.Index;
 using Newtonsoft.Json;
 
 namespace BuildMonitor.Helpers
 {
 	public abstract class BuildMonitorModelHandlerBase : IBuildMonitorModelHandler
 	{
-		protected readonly string teamCityUrl;
-		protected readonly string projectsUrl;
-		protected readonly string buildTypesUrl;
-		protected readonly string runningBuildsUrl;
-		protected readonly string buildStatusUrl;
-		protected readonly string buildQueueUrl;
+		protected TeamCitySettings teamcitySettings;
+
 		protected Dictionary<string, dynamic> runningBuilds;
 
 		protected dynamic projectsJson;
@@ -22,25 +18,29 @@ namespace BuildMonitor.Helpers
 		protected dynamic buildQueueJson;
 		protected dynamic buildStatusJson;
 
-		protected BuildMonitorModelHandlerBase()
+		public void Initialize(TeamCitySettings settings)
 		{
-			teamCityUrl = ConfigurationManager.AppSettings["teamcity_api_url"];
-			projectsUrl = teamCityUrl + ConfigurationManager.AppSettings["teamcity_api_projects"];
-			buildTypesUrl = teamCityUrl + ConfigurationManager.AppSettings["teamcity_api_buildtypes"];
-			runningBuildsUrl = teamCityUrl + ConfigurationManager.AppSettings["teamcity_api_runningbuilds"];
-			buildStatusUrl = teamCityUrl + ConfigurationManager.AppSettings["teamcity_api_buildstatus"];
-			buildQueueUrl = teamCityUrl + ConfigurationManager.AppSettings["teamcity_api_buildqueue"];
+			teamcitySettings = new TeamCitySettings
+			{
+				UserName = settings.UserName,
+				Password = settings.Password,
+				Projects = settings.Url + settings.Projects,
+				BuildTypes = settings.Url + settings.BuildTypes,
+				RunningBuilds = settings.Url + settings.RunningBuilds,
+				BuildStatus = settings.Url + settings.BuildStatus,
+				BuildQueue = settings.Url + settings.BuildQueue
+			};
 		}
 
 		protected void GetTeamCityBuildsJson()
 		{
-			var projectsJsonString = RequestHelper.GetJson(projectsUrl);
+			var projectsJsonString = RequestHelper.GetJson(teamcitySettings.Projects);
 			projectsJson = JsonConvert.DeserializeObject<dynamic>(projectsJsonString);
 
-			var buildTypesJsonString = RequestHelper.GetJson(buildTypesUrl);
+			var buildTypesJsonString = RequestHelper.GetJson(teamcitySettings.BuildTypes);
 			buildTypesJson = JsonConvert.DeserializeObject<dynamic>(buildTypesJsonString);
 
-			var buildQueueJsonString = RequestHelper.GetJson(buildQueueUrl);
+			var buildQueueJsonString = RequestHelper.GetJson(teamcitySettings.BuildQueue);
 			buildQueueJson = buildQueueJsonString != null ? JsonConvert.DeserializeObject<dynamic>(buildQueueJsonString) : null;
 
 			UpdateRunningBuilds();
@@ -52,7 +52,7 @@ namespace BuildMonitor.Helpers
 			{
 				runningBuilds = new Dictionary<string, dynamic>();
 
-				var runningBuildsJsonString = RequestHelper.GetJson(runningBuildsUrl);
+				var runningBuildsJsonString = RequestHelper.GetJson(teamcitySettings.RunningBuilds);
 				var runningBuildsJson = runningBuildsJsonString != null ? JsonConvert.DeserializeObject<dynamic>(runningBuildsJsonString) : null;
 
 				var count = (int)runningBuildsJson.count;
@@ -61,7 +61,7 @@ namespace BuildMonitor.Helpers
 					var buildJson = runningBuildsJson.build[i];
 
 					var buildId = (string)buildJson.buildTypeId;
-					var url = teamCityUrl + (string)buildJson.href;
+					var url = teamcitySettings.Url + (string)buildJson.href;
 
 					var buildStatusJsonString = RequestHelper.GetJson(url);
 					var buildStatusJson = JsonConvert.DeserializeObject<dynamic>(buildStatusJsonString ?? string.Empty);
@@ -110,10 +110,10 @@ namespace BuildMonitor.Helpers
 		protected string[] GetRunningBuildBranchAndProgress(string buildId)
 		{
 			var result = new[]
-            {
-                string.Empty,
-                string.Empty
-            };
+			{
+				string.Empty,
+				string.Empty
+			};
 
 			try
 			{
